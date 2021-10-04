@@ -22,26 +22,26 @@ public class WhackAMole {
 	}
 	
 	boolean place(int x, int y) {		
-		if(moleGrid[x][y] != 'W') {
-			moleGrid[x][y] = 'W';
+		if(moleGrid[x][y] != 'M') {
+			moleGrid[x][y] = 'M';
 			return true;
 		}
 		return false;
 	}
 	
 	void whack(int x, int y) {
-		if(moleGrid[x][y] == 'w') {
+		if(moleGrid[x][y] == 'M') {
 			score++;
 			molesLeft--;
-			moleGrid[x][y] = 'X';
+			moleGrid[x][y] = 'W';
 		}
 		attemptsLeft--;
 	}
 
 	void printGridToUser() {
 		for(int i = 0; i < moleGrid.length; i++) {
-			for(int j = 0;j <  moleGrid[i].length; j++) {
-				if(moleGrid[i][j] == 'W') {
+			for(int j = 0; j <  moleGrid[i].length; j++) {
+				if(moleGrid[i][j] == 'M') {
 					System.out.print("* ");	
 				}else {
 					System.out.print(moleGrid[i][j] + " ");					
@@ -53,7 +53,7 @@ public class WhackAMole {
 	
 	void printGrid() {
 		for(int i = 0; i < moleGrid.length; i++) {
-			for(int j = 0;j <  moleGrid[i].length; j++) {
+			for(int j = 0; j <  moleGrid[i].length; j++) {
 				System.out.print(moleGrid[i][j] + " ");					
 			}
 			System.out.print("\n");
@@ -106,8 +106,9 @@ public class WhackAMole {
 				whack.attemptsLeft--;
 				
 				if(whack.moleGrid[guessX - 1][guessY - 1] != '*') {
-					whack.score++;
+					whack.whack(guessX - 1, guessY - 1);
 					System.out.println("\nYou scored +1!\nRemaining attempts: " + whack.attemptsLeft + "\n\n");
+					
 				}else {
 					System.out.print("\nYou missed :(\nRemaining attempts: " + whack.attemptsLeft + "\n\n");
 				}		
