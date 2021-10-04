@@ -24,9 +24,8 @@ public class WhackAMole {
 	boolean place(int x, int y) {		
 		if(moleGrid[x][y] != 'M') {
 			moleGrid[x][y] = 'M';
-			return true;
 		}
-		return false;
+		return moleGrid[x][y] != 'M';
 	}
 	
 	void whack(int x, int y) {
@@ -83,7 +82,7 @@ public class WhackAMole {
 		int guessX;
 		int guessY;
 				
-		while(whack.attemptsLeft > 0 || whack.attemptsLeft > 0) {
+		while(whack.attemptsLeft > 0 || whack.molesLeft != 0) {
 			
 			whack.printGridToUser();
 			
