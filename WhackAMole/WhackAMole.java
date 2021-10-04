@@ -92,7 +92,7 @@ public class WhackAMole {
 			System.out.print("Insert the coordinates for y:\n");
 			guessY = guess.nextInt();
 			
-			if(guessX > whack.moleGrid.length - 1 && guessY == whack.moleGrid[0].length - 1) {
+			if(guessX > whack.moleGrid.length || guessY > whack.moleGrid[0].length) {
 				System.out.println("\nSorry, please choose a value minor than " + whack.moleGrid.length);
 				
 			}else {
