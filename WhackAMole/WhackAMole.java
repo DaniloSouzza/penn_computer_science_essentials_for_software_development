@@ -9,12 +9,10 @@ public class WhackAMole {
 	char[][] moleGrid;
 	
 	WhackAMole(int numAttempts, int gridDimension) {
-        
-        moleGrid = new char[gridDimension][gridDimension];
+		
+		moleGrid = new char[gridDimension][gridDimension];
 		attemptsLeft = numAttempts;
 		score = 0;
-        
-		
 		
 		for(int i = 0; i < moleGrid.length; i++) {
 			for(int j = 0; j <  moleGrid[i].length; j++) {
