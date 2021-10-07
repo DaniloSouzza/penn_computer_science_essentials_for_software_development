@@ -8,27 +8,31 @@ public class WhackAMole {
 	int attemptsLeft;
 	char[][] moleGrid;
 	
-	public WhackAMole(int numAttempts, int gridDimension) {
+	WhackAMole(int numAttempts, int gridDimension) {
+        
+        moleGrid = new char[gridDimension][gridDimension];
 		attemptsLeft = numAttempts;
-		molesLeft = gridDimension;
+		score = 0;
+        
 		
-		moleGrid = new char[gridDimension][gridDimension];
 		
 		for(int i = 0; i < moleGrid.length; i++) {
-			for(int j = 0;j <  moleGrid[i].length; j++) {
+			for(int j = 0; j <  moleGrid[i].length; j++) {
 				moleGrid[i][j] = '*';
 			}
 		}
 	}
 	
-	boolean place(int x, int y) {		
+	public boolean place(int x, int y) {		
 		if(moleGrid[x][y] != 'M') {
 			moleGrid[x][y] = 'M';
+            molesLeft++;
+            return true;
 		}
-		return moleGrid[x][y] != 'M';
+		return false;
 	}
 	
-	void whack(int x, int y) {
+	public void whack(int x, int y) {
 		if(moleGrid[x][y] == 'M') {
 			score++;
 			molesLeft--;
@@ -37,20 +41,20 @@ public class WhackAMole {
 		attemptsLeft--;
 	}
 
-	void printGridToUser() {
-		for(int i = 0; i < moleGrid.length; i++) {
-			for(int j = 0; j <  moleGrid[i].length; j++) {
-				if(moleGrid[i][j] == 'M') {
-					System.out.print("* ");	
-				}else {
-					System.out.print(moleGrid[i][j] + " ");					
+    public void printGridToUser() {
+		for (int i = 0; i < this.moleGrid.length; i++) {
+			for (int j = 0; j < this.moleGrid[i].length; j++) {
+				if(this.moleGrid[i][j] == 'W') {
+					System.out.print(this.moleGrid[i][j] + " ");
+				} else {
+					System.out.print("* ");
 				}
 			}
 			System.out.print("\n");
 		}
 	}
 	
-	void printGrid() {
+	public void printGrid() {
 		for(int i = 0; i < moleGrid.length; i++) {
 			for(int j = 0; j <  moleGrid[i].length; j++) {
 				System.out.print(moleGrid[i][j] + " ");					
@@ -60,13 +64,16 @@ public class WhackAMole {
 	}
 	
 	public static void main(String[] args) {
+        
 		WhackAMole whack = new WhackAMole(50, 10);
 		Random rnd = new Random();
 		
 		int i;
 		int j;
-		int moles = whack.molesLeft;
+		int moles = 10;
 		
+        whack.molesLeft = moles;
+        
 		while(moles > 0) {
 			i = rnd.nextInt(9);
 			j = rnd.nextInt(9);
@@ -101,10 +108,9 @@ public class WhackAMole {
 					whack.attemptsLeft = 0;
 					break;
 				}
-				
-				whack.attemptsLeft--;
-				
+								
 				if(whack.moleGrid[guessX - 1][guessY - 1] != '*') {
+                    whack.attemptsLeft--;
 					whack.whack(guessX - 1, guessY - 1);
 					System.out.println("\nYou scored +1!\nRemaining attempts: " + whack.attemptsLeft + "\n\n");
 					
