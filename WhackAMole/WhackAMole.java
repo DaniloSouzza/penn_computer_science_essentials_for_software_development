@@ -39,7 +39,7 @@ public class WhackAMole {
 		attemptsLeft--;
 	}
 
-    public void printGridToUser() {
+    	public void printGridToUser() {
 		for (int i = 0; i < this.moleGrid.length; i++) {
 			for (int j = 0; j < this.moleGrid[i].length; j++) {
 				if(this.moleGrid[i][j] == 'W') {
