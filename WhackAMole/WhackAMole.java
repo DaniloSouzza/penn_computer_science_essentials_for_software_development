@@ -70,7 +70,7 @@ public class WhackAMole {
 		int j;
 		int moles = 10;
 		
-        whack.molesLeft = moles;
+        	whack.molesLeft = moles;
         
 		while(moles > 0) {
 			i = rnd.nextInt(9);
@@ -108,7 +108,7 @@ public class WhackAMole {
 				}
 								
 				if(whack.moleGrid[guessX - 1][guessY - 1] != '*') {
-                    whack.attemptsLeft--;
+                    			whack.attemptsLeft--;
 					whack.whack(guessX - 1, guessY - 1);
 					System.out.println("\nYou scored +1!\nRemaining attempts: " + whack.attemptsLeft + "\n\n");
 					
@@ -125,7 +125,7 @@ public class WhackAMole {
 		}
 		
 		System.out.println("Thanks for playing!\nScore: " + whack.score + 
-						   "\nAttempts Left: " + whack.attemptsLeft);
+				   "\nAttempts Left: " + whack.attemptsLeft);
 		whack.printGrid();
 	}
 }
